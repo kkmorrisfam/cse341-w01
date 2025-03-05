@@ -11,7 +11,7 @@ const connectDB = async (url) => {
       useUnifiedTopology: true,
     });
     dbConnection = client.db(); // store connection
-    console.log("Connected to MongoDB ");
+    console.log("Connected to MongoDB...");
   } catch (error) {
     console.error("Error connecting to MongoDB ", error);
     throw error; // Ensure the app doesn't start if DB fails to connect
