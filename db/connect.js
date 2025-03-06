@@ -6,10 +6,7 @@ let dbConnection;
 //connect to the database
 const connectDB = async (url) => {
   try {
-    const client = await MongoClient.connect(url, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    const client = await MongoClient.connect(url );
     dbConnection = client.db(); // store connection
     console.log("Connected to MongoDB...");
   } catch (error) {

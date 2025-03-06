@@ -1,14 +1,15 @@
 const express = require('express')
 const app = express()
 require("dotenv").config();
-const connectDB = require('./db/connect')
+const {connectDB} = require('./db/connect')
+const professionalRoute = require('./routes/professional')
 
-console.log("routes")
+console.log("loading routes...")
 
 // app.use(static)
 app.use(express.static('public'));
 
-
+app.use('/', professionalRoute);
 
 //test
 // app.use('/', (req, res, next) => {
@@ -42,16 +43,17 @@ const host = process.env.HOST;
  * Connect to Database 
  * Log statement to confirm server operation
  *************************/
-const start = async => {
+const start = async () => {
   try{
     await connectDB(process.env.MONGO_URI);   
 
+    app.listen(port, () => {
+      console.log(`app listening on ${host}:${port}...`)
+    })    
+    
   } catch (error) {
     console.error("Failed to start server: ", error)
   }
 }
-app.listen(port, () => {
-  console.log(`app listening on ${host}:${port}...`)
-})    
 
 start();
