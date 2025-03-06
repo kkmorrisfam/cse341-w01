@@ -11,6 +11,8 @@ const getData = async (req, res, next) => {
         if (!data) {
             return res.status(404).json({ message: "No data found" });
         }
+        // console.log("Fetched Data from MongoDB:", JSON.stringify(data, null, 2));
+        console.log("First Name:", data.nameLink.firstName);
 
         res.json(data);
     } catch (error) {

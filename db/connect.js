@@ -5,6 +5,13 @@ let dbConnection;
 
 //connect to the database
 const connectDB = async (url) => {
+
+  //should I use if(dbConnection) test first? if connected, don't try and connect.
+  if (dbConnection) {
+    console.log("Using existing MongoDB connection...");
+    return dbConnection;
+  }
+  
   try {
     const client = await MongoClient.connect(url );
     dbConnection = client.db(); // store connection
